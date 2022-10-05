@@ -1,7 +1,7 @@
 import Joi from 'joi';
-import User from '../interfaces/User';
+import { CreateUserData } from '../repositories/user.repository';
 
-type SignUpSchema = Omit<User, '_id' | 'createdAt' | 'updatedAt'> & {
+type SignUpSchema = CreateUserData & {
   confirmPassword: string;
 };
 
