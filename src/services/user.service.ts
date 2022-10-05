@@ -44,7 +44,7 @@ export default class UserService {
     }
   }
 
-  async verifyCredentials(email: string, password: string) {
+  public async verifyCredentials(email: string, password: string) {
     const user = await this.userRepository.findByEmail(email);
     if (!user) {
       throw new AppError('Invalid credentials', 401);
@@ -54,5 +54,9 @@ export default class UserService {
       throw new AppError('Invalid credentials', 401);
     }
     return user;
+  }
+
+  public generateToken(userId: string) {
+    return AuthUtils.generateToken(userId);
   }
 }

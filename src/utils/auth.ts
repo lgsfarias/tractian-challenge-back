@@ -11,7 +11,7 @@ export const verifyPassword = (password: string, hashedPassword: string) => {
   return bcrypt.compareSync(password, hashedPassword);
 };
 
-export const generateToken = (id: number) => {
+export const generateToken = (id: string) => {
   const token = jwt.sign({ userId: id }, String(process.env.JWT_SECRET), {
     expiresIn: '1h',
   });
