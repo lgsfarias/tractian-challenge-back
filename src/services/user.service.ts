@@ -33,6 +33,11 @@ export default class UserService {
     return this.userRepository.update(id, updateUserData);
   }
 
+  async addCompany(userId: string, companyId: string) {
+    const user = await this.userRepository.addCompany(userId, companyId);
+    return user;
+  }
+
   async verifyPassword(password: string, hashedPassword: string) {
     return AuthUtils.verifyPassword(password, hashedPassword);
   }
