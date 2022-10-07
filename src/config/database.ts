@@ -1,17 +1,19 @@
-import { MongoClient } from 'mongodb';
+import mongoose from 'mongoose';
 import chalk from 'chalk';
 
-const mongoURI = process.env.MONGO_URI || '';
-const mongoClient = new MongoClient(mongoURI);
+const mongoURI = String(process.env.MONGO_URI);
 
-(async () => {
-  try {
-    await mongoClient.connect();
-    console.log(chalk.bold.blue('Connected to MongoDB'));
-  } catch (err) {
-    console.log(chalk.bold.red(`Error connecting to MongoDB ${err}`));
-  }
-})();
+mongoose.connect(mongoURI);
 
-const db = mongoClient.db(process.env.MONGO_DB || '');
+const db = mongoose.connection;
+
+db.on(
+  'error',
+  console.error.bind(console, chalk.bold.red('MongoDB connection error:')),
+);
+
+db.once('open', () => {
+  console.log(chalk.bold.blue('Connected to MongoDB'));
+});
+
 export default db;
