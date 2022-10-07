@@ -20,4 +20,11 @@ export default class UserController {
     const token = this.userService.generateToken(user.id);
     return res.status(200).json({ token });
   }
+
+  public async addCompany(req: Request, res: Response) {
+    const { companyId } = req.body;
+    const { user } = res.locals;
+    const send = await this.userService.addCompany(user.id, companyId);
+    return res.status(200).json(send);
+  }
 }

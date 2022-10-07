@@ -10,7 +10,7 @@ const companyRouter = Router();
 companyRouter.post(
   '/',
   verifyTokenMiddleware,
-  validateSchemaMiddleware(schemas.addCompany),
+  validateSchemaMiddleware(schemas.createCompany),
   (req, res) => companyController.create(req, res),
 );
 
