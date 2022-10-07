@@ -22,9 +22,9 @@ export default class UserController {
   }
 
   public async addCompany(req: Request, res: Response) {
-    const { companyId } = req.body;
+    const { id } = req.body;
     const { user } = res.locals;
-    const send = await this.userService.addCompany(user.id, companyId);
+    const send = await this.userService.addCompany(user.id, id);
     return res.status(200).json(send);
   }
 }
