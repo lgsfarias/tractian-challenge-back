@@ -1,8 +1,11 @@
 import Joi from 'joi';
-import { CreateCompanyData } from '../repositories/company.repository';
 
-const createCompanySchema = Joi.object<CreateCompanyData>({
-  name: Joi.string().required(),
+type AddCompanyData = {
+  id: string;
+};
+
+const addCompanySchema = Joi.object<AddCompanyData>({
+  id: Joi.string().required(),
 });
 
-export default createCompanySchema;
+export default addCompanySchema;

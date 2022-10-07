@@ -33,7 +33,7 @@ export default class UserService {
     return this.userRepository.update(id, updateUserData);
   }
 
-  async addCompany(userId: string, companyId: string) {
+  public async addCompany(userId: string, companyId: string) {
     const user = await this.userRepository.addCompany(userId, companyId);
     return user;
   }
