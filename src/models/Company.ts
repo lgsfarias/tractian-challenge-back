@@ -2,7 +2,7 @@ import { Schema, model } from 'mongoose';
 import { Company } from '../interfaces';
 
 const companySchema = new Schema<Company>({
-  name: { type: String, required: true },
+  name: { type: String, required: true, unique: true },
   units: [{ type: Schema.Types.ObjectId, ref: 'units', default: [] }],
 });
 
