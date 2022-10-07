@@ -19,6 +19,14 @@ export default class UserRepository {
     return user;
   }
 
+  public async showData(id: string) {
+    const user = await users
+      .findById(id)
+      .populate('companies')
+      .select('-password');
+    return user;
+  }
+
   public async findAndPopulateCompanies(userId: string) {
     const user = await users.findById(userId).populate('companies');
     return user;

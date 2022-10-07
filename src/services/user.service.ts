@@ -69,4 +69,9 @@ export default class UserService {
   public generateToken(userId: string) {
     return AuthUtils.generateToken(userId);
   }
+
+  public async showData(id: string) {
+    const user = await this.userRepository.showData(id);
+    return user;
+  }
 }

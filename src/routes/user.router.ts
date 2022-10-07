@@ -14,4 +14,8 @@ userRouter.post(
   (req, res) => userController.addCompany(req, res),
 );
 
+userRouter.get('/show-data', verifyTokenMiddleware, (req, res) =>
+  userController.showData(req, res),
+);
+
 export default userRouter;

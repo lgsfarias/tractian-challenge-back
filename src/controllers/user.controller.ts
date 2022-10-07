@@ -27,4 +27,10 @@ export default class UserController {
     const send = await this.userService.addCompany(user.id, id);
     return res.status(200).json(send);
   }
+
+  public async showData(req: Request, res: Response) {
+    const { user } = res.locals;
+    const send = await this.userService.showData(user.id);
+    return res.status(200).json(send);
+  }
 }
