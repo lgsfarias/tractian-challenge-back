@@ -1,4 +1,4 @@
-import User from '../interfaces/User';
+import { User } from '../interfaces';
 import users from '../models/User';
 
 export type CreateUserData = Omit<User, 'createdAt'>;
@@ -19,8 +19,31 @@ export default class UserRepository {
     return user;
   }
 
+  public async findAndPopulateCompanies(userId: string) {
+    const user = await users.findById(userId).populate('companies');
+    return user;
+  }
+
   public async update(id: string, updateUserData: CreateUserData) {
     const user = await users.findByIdAndUpdate(id, updateUserData);
+    return user;
+  }
+
+  public async addCompany(userId: string, companyId: string) {
+    const user = await users.findByIdAndUpdate(
+      userId,
+      { $push: { companies: companyId } },
+      { new: true },
+    );
+    return user;
+  }
+
+  public async removeCompany(userId: string, companyId: string) {
+    const user = await users.findByIdAndUpdate(
+      userId,
+      { $pull: { companies: companyId } },
+      { new: true },
+    );
     return user;
   }
 }

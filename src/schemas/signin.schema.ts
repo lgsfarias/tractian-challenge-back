@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import User from '../interfaces/User';
+import { User } from '../interfaces';
 
 type SignInSchema = Omit<User, 'createdAt' | 'name'>;
 
