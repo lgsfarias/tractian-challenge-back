@@ -3,5 +3,13 @@ import signup from './signup.schema';
 import createCompany from './createCompany.schema';
 import addCompany from './addCompany.schema';
 import unitSchema from './unit.schema';
+import employeeSchema from './employee.schema';
 
-export { signin, signup, createCompany, addCompany, unitSchema };
+export {
+  signin,
+  signup,
+  createCompany,
+  addCompany,
+  unitSchema,
+  employeeSchema,
+};

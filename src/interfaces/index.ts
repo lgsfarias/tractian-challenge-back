@@ -18,7 +18,7 @@ export interface Unit {
 
 export interface Employee {
   name: string;
-  company: ObjectId;
+  unit: ObjectId;
 }
 
 export interface Asset {
