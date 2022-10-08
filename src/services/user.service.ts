@@ -33,16 +33,6 @@ export default class UserService {
     return this.userRepository.update(id, updateUserData);
   }
 
-  public async addCompany(userId: string, companyId: string) {
-    const userNow = await this.userRepository.findById(userId);
-    const hasCompany = userNow?.companies?.includes(companyId);
-    if (hasCompany) {
-      throw new AppError('This company is under your management already', 400);
-    }
-    const user = await this.userRepository.addCompany(userId, companyId);
-    return user;
-  }
-
   async verifyPassword(password: string, hashedPassword: string) {
     return AuthUtils.verifyPassword(password, hashedPassword);
   }

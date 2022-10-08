@@ -9,6 +9,7 @@ const signUpSchema = Joi.object<SignUpSchema>({
   email: Joi.string().email().required(),
   password: Joi.string().required(),
   confirmPassword: Joi.string().valid(Joi.ref('password')).required(),
+  company: Joi.string().required(),
   name: Joi.string().required(),
 });
 

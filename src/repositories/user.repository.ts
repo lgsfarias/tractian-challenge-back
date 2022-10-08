@@ -1,11 +1,17 @@
 import { User } from '../interfaces';
 import users from '../models/User';
+import { ObjectId } from 'mongodb';
 
-export type CreateUserData = Omit<User, 'createdAt'>;
+export type CreateUserData = Omit<User, 'company'> & {
+  company: string;
+};
 
 export default class UserRepository {
   public async create(createUserData: CreateUserData) {
-    const user = await users.create(createUserData);
+    const user = await users.create({
+      ...createUserData,
+      company: new ObjectId(createUserData.company),
+    });
     return user._id;
   }
 
@@ -22,7 +28,7 @@ export default class UserRepository {
   public async showData(id: string) {
     const user = await users
       .findById(id)
-      .populate('companies')
+      .populate('company')
       .select('-password');
     return user;
   }
@@ -33,25 +39,10 @@ export default class UserRepository {
   }
 
   public async update(id: string, updateUserData: CreateUserData) {
-    const user = await users.findByIdAndUpdate(id, updateUserData);
-    return user;
-  }
-
-  public async addCompany(userId: string, companyId: string) {
-    const user = await users.findByIdAndUpdate(
-      userId,
-      { $push: { companies: companyId } },
-      { new: true },
-    );
-    return user;
-  }
-
-  public async removeCompany(userId: string, companyId: string) {
-    const user = await users.findByIdAndUpdate(
-      userId,
-      { $pull: { companies: companyId } },
-      { new: true },
-    );
+    const user = await users.findByIdAndUpdate(id, {
+      ...updateUserData,
+      company: new ObjectId(updateUserData.company),
+    });
     return user;
   }
 }

@@ -1,7 +1,7 @@
 import { Company } from '../interfaces';
 import companies from '../models/Company';
 
-export type CreateCompanyData = Omit<Company, 'createdAt'>;
+export type CreateCompanyData = Company;
 
 export default class CompanyRepository {
   public async create(createCompanyData: CreateCompanyData) {
