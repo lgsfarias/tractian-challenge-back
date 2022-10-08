@@ -12,8 +12,6 @@ export const verifyPassword = (password: string, hashedPassword: string) => {
 };
 
 export const generateToken = (id: string) => {
-  const token = jwt.sign({ userId: id }, String(process.env.JWT_SECRET), {
-    expiresIn: '1h',
-  });
+  const token = jwt.sign({ userId: id }, String(process.env.JWT_SECRET));
   return token;
 };
