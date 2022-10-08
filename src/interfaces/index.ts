@@ -1,27 +1,24 @@
+import { ObjectId } from 'mongodb';
+
 export interface User {
   name: string;
   email: string;
   password: string;
-  companies?: string[];
-  createdAt: Date;
+  company: ObjectId;
 }
 
 export interface Company {
   name: string;
-  units?: string[];
-  createdAt: Date;
 }
 
 export interface Unit {
   name: string;
-  assets: string[];
-  employees: string[];
-  createdAt: Date;
+  company: ObjectId;
 }
 
 export interface Employee {
   name: string;
-  createdAt: Date;
+  company: ObjectId;
 }
 
 export interface Asset {
@@ -32,5 +29,5 @@ export interface Asset {
   owner: string;
   status: 'Running' | 'Alerting' | 'Stopped';
   healthLevel: number;
-  createdAt: Date;
+  unit: ObjectId;
 }
