@@ -55,9 +55,10 @@ export default class EmployeeRepository {
       path: 'unit',
       match: { company: companyId },
     });
-    return employeesList;
+    return employeesList.filter((employee) => employee.unit);
   }
 
+  // FIXME:
   public async findByCompanyAndName(companyId: string, name: string) {
     const employee = await employees.findOne().populate({
       path: 'unit',

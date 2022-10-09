@@ -57,19 +57,20 @@ export default class AssetRepository {
     return asset;
   }
 
+  public async findByCompany(companyId: string) {
+    const assetsList = await assets.find().populate({
+      path: 'unit owner',
+      match: { company: companyId },
+    });
+    return assetsList.filter((asset) => asset.unit);
+  }
+
+  //FIXME:
   public async findByCompanyAndName(companyId: string, name: string) {
     const asset = await assets.findOne({ name }).populate({
       path: 'unit owner',
       match: { company: companyId },
     });
     return asset;
-  }
-
-  public async findByCompany(companyId: string) {
-    const assetsList = await assets.find().populate({
-      path: 'unit owner',
-      match: { company: companyId },
-    });
-    return assetsList;
   }
 }
