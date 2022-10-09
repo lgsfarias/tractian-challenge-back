@@ -20,6 +20,10 @@ employeeRouter.get(
   (req, res) => employeeController.list(req, res),
 );
 
+employeeRouter.get('/by-unit/:id', verifyTokenMiddleware, (req, res) =>
+  employeeController.findByUnit(req, res),
+);
+
 employeeRouter.get('/:id', verifyTokenMiddleware, (req, res) =>
   employeeController.show(req, res),
 );
@@ -33,10 +37,6 @@ employeeRouter.put(
 
 employeeRouter.delete('/:id', verifyTokenMiddleware, (req, res) =>
   employeeController.delete(req, res),
-);
-
-employeeRouter.get('/by-unit/:id', verifyTokenMiddleware, (req, res) =>
-  employeeController.findByUnit(req, res),
 );
 
 export default employeeRouter;

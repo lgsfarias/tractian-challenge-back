@@ -4,6 +4,7 @@ import createCompany from './createCompany.schema';
 import addCompany from './addCompany.schema';
 import unitSchema from './unit.schema';
 import employeeSchema from './employee.schema';
+import assetSchema from './asset.schema';
 
 export {
   signin,
@@ -12,4 +13,5 @@ export {
   addCompany,
   unitSchema,
   employeeSchema,
+  assetSchema,
 };
