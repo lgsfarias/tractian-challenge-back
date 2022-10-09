@@ -5,6 +5,8 @@
   "type": "commonjs",
   "main": "server.ts",
   "scripts": {
+    "build": "tsc",
+    "start": "node dist/server.js",
     "dev": "nodemon server.ts"
   },
   "keywords": [],
