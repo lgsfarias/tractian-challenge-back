@@ -26,8 +26,8 @@ export interface Asset {
   name: string;
   description: string;
   model: string;
-  owner: string;
   status: 'Running' | 'Alerting' | 'Stopped';
   healthLevel: number;
   unit: ObjectId;
+  owner: ObjectId;
 }
