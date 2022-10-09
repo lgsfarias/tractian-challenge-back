@@ -18,7 +18,7 @@ export default class AssetRepository {
   }
 
   public async findById(id: string) {
-    const asset = await assets.findById(id);
+    const asset = await assets.findById(id).populate('unit owner');
     return asset;
   }
 
