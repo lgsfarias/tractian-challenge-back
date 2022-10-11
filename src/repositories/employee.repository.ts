@@ -1,5 +1,6 @@
 import { Employee } from '../interfaces';
 import employees from '../models/Employee';
+import assets from '../models/Asset';
 import { ObjectId } from 'mongodb';
 
 export type CreateEmployeeData = Omit<Employee, 'unit'> & { unit: string };
@@ -65,5 +66,10 @@ export default class EmployeeRepository {
       match: { company: companyId },
     });
     return employee;
+  }
+
+  public async findAssetsByEmployee(employeeId: string) {
+    const assetsList = await assets.find({ owner: employeeId });
+    return assetsList;
   }
 }

@@ -43,6 +43,15 @@ export default class EmployeeService {
   }
 
   public async delete(id: string) {
+    const employeeAssets = await this.employeeRepository.findAssetsByEmployee(
+      id,
+    );
+    if (employeeAssets.length > 0) {
+      throw new AppError(
+        'Employee has assets assigned. Please remove them before deleting',
+        400,
+      );
+    }
     await this.employeeRepository.delete(id);
   }
 
