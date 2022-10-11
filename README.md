@@ -96,8 +96,6 @@ GET /users/show-data
     }
 ```
 
-````yml
-
 ```yml
 POST /companies/
     - Route to create a new company
